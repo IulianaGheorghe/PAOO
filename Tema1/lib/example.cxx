@@ -27,3 +27,8 @@ Person::Person(Person&& p1) {
     p1.height = 0;
     std::cout << "I was moved!\n";
 }
+
+Person::~Person() {
+    delete [] this->name;
+    std::cout << "Goodbye world!\n";
+}
