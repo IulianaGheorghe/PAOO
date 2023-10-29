@@ -1,2 +1,5 @@
-/Step1_build
-/Step2_build
+/CMake_tutorial/Step1_build
+/CMake_tutorial/Step2_build
+/Tema1_build
+
+.vscode
