@@ -32,3 +32,7 @@ Person::~Person() {
     delete [] this->name;
     std::cout << "Goodbye world!\n";
 }
+
+void Person::PrintDetails() {
+    std::cout << "Name: " << (this->name ? this->name : "") << ", Age: " << this->age << " years old, Height: " << this->height << "m" << std::endl;
+}
