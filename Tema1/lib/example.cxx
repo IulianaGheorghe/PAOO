@@ -17,3 +17,13 @@ Person::Person(const Person& p1) {
     memcpy(this->name, p1.name, nameLength);
     std::cout << "I was cloned! I'm also " << this->name << std::endl;
 }
+
+Person::Person(Person&& p1) {
+    this->name = p1.name;
+    this->age = p1.age;
+    this->height = p1.height;
+    p1.name = nullptr;
+    p1.age = 0;
+    p1.height = 0;
+    std::cout << "I was moved!\n";
+}
