@@ -20,5 +20,8 @@ namespace Human {
 
         virtual void printDetails() const override;
         virtual void setName(const char*) override;
+        virtual char* getStudentName() const;
+        virtual void hasClasses() const;
+        virtual void study() const;
     };
 }

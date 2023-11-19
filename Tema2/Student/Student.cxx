@@ -78,3 +78,19 @@ void Student::setName(const char* studentName) {
     name = new char[strlen(studentName) + 1];
     strcpy(name, studentName);
 }
+
+char* Student::getStudentName() const{
+    return name;
+}
+
+void Student::hasClasses() const{
+    if (this->classes > 0) {
+        std::cout << "Student " << (this->name ? this->name : "") << " has " << this->classes << " classes." << std::endl;
+    } else {
+        std::cout << "Student " << (this->name ? this->name : "") << " doesn't have classes today." << std::endl;
+    }
+}
+
+void Student::study() const{
+    std::cout << "Student is studying." << std::endl;
+}
