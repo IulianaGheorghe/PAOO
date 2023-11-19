@@ -15,6 +15,9 @@ namespace Human {
         Student(Student&&);
         ~Student();
 
+        Student& operator = (const Student& other);
+        Student& operator = (Student&& other);
+
         virtual void printDetails() const override;
         virtual void setName(const char*) override;
     };

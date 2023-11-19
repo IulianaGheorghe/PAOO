@@ -14,6 +14,9 @@ namespace Human {
         Teacher(Teacher&&);
         ~Teacher();
 
+        Teacher& operator = (const Teacher& other);
+        Teacher& operator = (Teacher&& other);
+
         virtual void printDetails() const override;
         virtual void setName(const char*) override;
     };

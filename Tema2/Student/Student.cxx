@@ -39,6 +39,36 @@ Student::~Student() {
     std::cout << "Student -> Goodbye world!\n";
 }
 
+Student& Student::operator=(const Student& other) {
+    if (this != &other) {
+        delete[] name;
+        age = other.age;
+        grade = other.grade;
+        classes = other.classes;
+        int nameLength = strlen(other.name);
+        name = new char[nameLength];
+        memcpy(name, other.name, nameLength);
+    }
+    std::cout << "Copy assignment operator -> Student has been copied" << std::endl;
+    return *this;
+}
+
+Student& Student::operator=(Student&& other) {
+    if (this != &other) {
+        delete[] name;
+        name = other.name;
+        age = other.age;
+        grade = other.grade;
+        classes = other.classes;
+        other.name = nullptr;
+        other.age = 0;
+        other.grade = 0.0;
+        other.classes = 0;
+    }
+    std::cout << "Move assignment operator -> Student has been moved" << std::endl;
+    return *this;
+}
+
 void Student::printDetails() const {
     std::cout << "Student -> Name: " << (this->name ? this->name : "") << ", Age: " << this->age << " years old, Grade: " << this->grade << ", Classes: " << this->classes << std::endl;
 }
