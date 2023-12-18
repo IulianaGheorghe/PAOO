@@ -10,12 +10,12 @@ class Student;
 class University {
     private:
         std::string name;
-        std::vector<std::unique_ptr<Student>> students;
+        std::vector<std::weak_ptr<Student>> students;
         std::mutex mutex;
 
     public:
         University(const std::string& univName);
-        void admitStudents();
+        void admitStudent(std::shared_ptr<Student>);
         void displayStudents() const;
         std::string getName() const;
         std::mutex& getMutex(); 

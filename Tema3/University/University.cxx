@@ -1,23 +1,30 @@
 #include "University.hpp"
 #include "Student.hpp"
-#include <thread> 
-#include <chrono>
 
 University::University(const std::string& univName) : name(univName) {
     std::cout << "University " << name << " created.\n";
 }
 
-void University::admitStudents() {
+void University::admitStudent(std::shared_ptr<Student> student) {
     std::lock_guard<std::mutex> lock(mutex);
-    std::cout << "Admitting students to " << name << ".\n";
-    // Simulate some processing time for admitting students
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    // Create a weak_ptr from the shared_ptr before pushing it into the vector
+    std::weak_ptr<Student> weakStudent = student;
+
+    std::cout << "Admitting " << student->getName() << " to " << name << ".\n";
+    students.push_back(weakStudent);
 }
 
 void University::displayStudents() const {
     std::cout << "Students enrolled in " << name << ":\n";
-    for (const auto& student : students) {
-        student->displayInfo();
+    for (const auto& weakStudent : students) {
+        // Attempt to lock the weak_ptr to access the Student
+        if (auto student = weakStudent.lock()) {
+            student->displayInfo();
+        } else {
+            // The Student has been deleted
+            std::cout << "Student no longer enrolled.\n";
+        }
     }
 }
 
@@ -30,6 +37,6 @@ std::mutex& University::getMutex() {
 }
 
 University::~University() {
-    std::cout << "University " << name << " destroyed.\n";
+    std::cout << name << " destroyed.\n";
 }
 
