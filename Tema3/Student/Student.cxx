@@ -11,6 +11,10 @@ void Student::enroll(std::shared_ptr<University> univ) {
     std::cout << name << " enrolled in university.\n";
 }
 
+std::string Student::getName() const {
+    return name;
+}
+
 void Student::displayInfo() {
     if (auto univ = university.lock()) {
         std::cout << name << " is enrolled in " << univ->getName() << ".\n";

@@ -12,6 +12,7 @@ class Student {
     public:
         Student(const std::string&);
         void enroll(std::shared_ptr<University>);
+        std::string getName() const;
         void displayInfo();
         ~Student();
 };

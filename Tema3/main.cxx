@@ -4,8 +4,8 @@
 #include <vector>
 
 int main() {
-    auto student1 = std::make_unique<Student>("Tom");
-    auto student2 = std::make_unique<Student>("Spencer");
+    auto student1 = std::make_shared<Student>("Tom");
+    auto student2 = std::make_shared<Student>("Spencer");
 
     auto university = std::make_shared<University>("Tech University");
 
@@ -22,7 +22,8 @@ int main() {
     thread1.join();
     thread2.join();
 
-    university->admitStudents();
+    university->admitStudent(student1);
+    university->admitStudent(student2);
     university->displayStudents();
 
     return 0;
